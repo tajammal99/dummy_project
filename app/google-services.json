@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "390276332965",
+    "firebase_url": "https://campfootainment-2d897.firebaseio.com",
+    "project_id": "campfootainment-2d897",
+    "storage_bucket": "campfootainment-2d897.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390276332965:android:a042239f466b9840",
+        "android_client_info": {
+          "package_name": "com.amina.campfootainment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390276332965-ajc1n7cmebnd1gfucmgu92tgqvnr04lf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amina.campfootainment",
+            "certificate_hash": "afa46d76b5906e77e85cf0fb2123a1a1ced5bb9c"
+          }
+        },
+        {
+          "client_id": "390276332965-h9l4qe6h3m7a77nf592umoek98te5kfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOaQH4Lj5HVCKJBCIdsBv3zvMcqsPSS74"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390276332965-h9l4qe6h3m7a77nf592umoek98te5kfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
