@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InfoPersonal"></activity>
+        <activity android:name=".AdminHome"></activity>
+        <activity android:name=".UserProfile" />
+        <activity android:name=".InfoPersonal" />
         <activity
             android:name=".HomeP"
             android:label="@string/title_activity_home_p"

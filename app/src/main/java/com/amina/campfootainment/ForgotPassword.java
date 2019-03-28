@@ -26,7 +26,13 @@ public class ForgotPassword extends AppCompatActivity {
     private TextView resetPassword;
     private FirebaseAuth firebaseAuth;
     private static final Pattern sEmail_PATTERN =
-            Pattern.compile("^[A-Za-z0-9._%+-]+@" + "lgu.edu.pk");
+            Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+");
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
 

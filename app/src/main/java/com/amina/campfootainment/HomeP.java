@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -32,6 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeP extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +43,8 @@ public class HomeP extends AppCompatActivity
     private DatabaseReference databaseReference;
     private String currentUserID,username,email;
     private ProgressDialog progressDialog;
+    private ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +93,48 @@ public class HomeP extends AppCompatActivity
 
         navUsername.setText(username);
         navUseremail.setText(email);
+
+
+        viewPager = findViewById(R.id.myViewPagerHome);
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+
+        viewPager.setAdapter(viewPagerAdapter);
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new HomeP.MyTimerTask(),1500,2500);
+    }
+
+    public void gotoProfile(View view)
+    {
+        startActivity(new Intent(HomeP.this,UserProfile.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+    }
+
+    public class MyTimerTask extends TimerTask
+    {
+
+        @Override
+        public void run() {
+            HomeP.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (viewPager.getCurrentItem() == 0)
+                    {
+                        viewPager.setCurrentItem(1);
+                    }
+                    else if (viewPager.getCurrentItem() == 1)
+                    {
+                        viewPager.setCurrentItem(2);
+                    }
+                    else
+                    {
+                        viewPager.setCurrentItem(0);
+                    }
+                }
+            });
+        }
     }
 
     @Override

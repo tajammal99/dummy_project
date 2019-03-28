@@ -13,6 +13,18 @@ android:orientation="vertical"
 android:padding="10dp"
 android:gravity="center"
 android:id="@+id/ll">
+
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="2dp"
+        android:id="@+id/myViewPagerHome"
+        >
+
+    </android.support.v4.view.ViewPager>
+
+
 <android.support.v4.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,7 +32,7 @@ android:id="@+id/ll">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="2dp"
         android:orientation="vertical"
         >
         <LinearLayout
@@ -34,7 +46,9 @@ android:id="@+id/ll">
                 android:id="@+id/stdcardId"
                 android:layout_width="160dp"
                 android:layout_height="190dp"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="true"
                 app:cardCornerRadius="10dp"
                 app:cardMaxElevation="15dp"
@@ -54,6 +68,8 @@ android:id="@+id/ll">
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/cerclebackgroundpurple"
+                        android:src="@drawable/ic_event_black_24dp"
+                        android:tint="@color/white"
                         android:padding="10dp"
                         />
 
@@ -61,7 +77,7 @@ android:id="@+id/ll">
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="QR"
+                        android:text="Events"
                         android:textStyle="bold" />
 
                     <View
@@ -75,7 +91,7 @@ android:id="@+id/ll">
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Scan QR Code"
+                        android:text="See all events"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -85,7 +101,10 @@ android:id="@+id/ll">
                 android:clickable="true"
                 android:layout_width="160dp"
                 android:layout_height="190dp"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="gotoProfile"
                 app:cardCornerRadius="10dp"
                 app:cardMaxElevation="15dp"
                 >
@@ -99,6 +118,8 @@ android:id="@+id/ll">
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/cerclebackgroundpink"
+                        android:src="@drawable/user"
+                        android:tint="@color/white"
                         android:padding="10dp"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -114,7 +135,7 @@ android:id="@+id/ll">
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="See your profile details"
+                        android:text="All details "
                         android:padding="5dp"
                         android:textColor="@android:color/darker_gray"/>
 
@@ -145,6 +166,8 @@ android:id="@+id/ll">
                     <ImageView
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:src="@drawable/time_table"
+                        android:tint="@color/white"
                         android:background="@drawable/cerclebackgroundgreen"
                         android:padding="10dp"/>
                     <TextView
@@ -152,7 +175,7 @@ android:id="@+id/ll">
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:text="Attendance"/>
+                        android:text="Time Table"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -161,7 +184,7 @@ android:id="@+id/ll">
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Check attendance report"
+                        android:text="Mange your time table"
                         android:padding="5dp"
                         android:textColor="@android:color/darker_gray"/>
 
@@ -186,6 +209,8 @@ android:id="@+id/ll">
                     <ImageView
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:tint="@color/white"
+                        android:src="@drawable/ic_group_black_24dp"
                         android:background="@drawable/cerclebackgroundyello"
                         android:padding="10dp"
                         />
@@ -194,7 +219,7 @@ android:id="@+id/ll">
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Subjects"
+                        android:text="Participants"
                         android:textStyle="bold" />
 
                     <View
@@ -208,7 +233,7 @@ android:id="@+id/ll">
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Maintain subjects records"
+                        android:text="All participants of your event"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -246,7 +271,7 @@ android:id="@+id/ll">
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:text="Notifications"/>
+                        android:text="Text"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -255,7 +280,7 @@ android:id="@+id/ll">
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="All notifications are here"
+                        android:text="Text"
                         android:padding="5dp"
                         android:textColor="@android:color/darker_gray"/>
 
@@ -288,7 +313,7 @@ android:id="@+id/ll">
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Percentage"
+                        android:text="Text"
                         android:textStyle="bold" />
 
                     <View
@@ -302,7 +327,7 @@ android:id="@+id/ll">
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="View percentage"
+                        android:text="Text"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>

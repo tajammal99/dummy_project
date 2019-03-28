@@ -20,8 +20,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
@@ -35,13 +38,21 @@ public class LoginActivity extends AppCompatActivity {
     private TextView LoginButon;
     private EditText UserEmail,UserPassword;
     private TextView NeedNewAccountLink,ForgetPasswordLink;
+    private String currentUserID;
+    private DatabaseReference databaseReference;
 
     private ProgressDialog loadingBar;
     private DatabaseReference UsersRef;
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private static final Pattern sEmail_PATTERN =
-            Pattern.compile("^[A-Za-z0-9._%+-]+@" + "lgu.edu.pk");
+            Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +106,19 @@ public class LoginActivity extends AppCompatActivity {
 
         if (currentUser != null)
         {
-            SendUserToMainActivity();
+
+            loadingBar.setTitle("Loading");
+            loadingBar.setMessage("Please wait while we are checking User type");
+            loadingBar.show();
+
+            sendToUserHome();
         }
     }
 
     private void AllowUserToLogin()
     {
-        String email = UserEmail.getText().toString();
-        String password = UserPassword.getText().toString();
+        String email = UserEmail.getText().toString().trim();
+        String password = UserPassword.getText().toString().trim();
 
 
         if (email.isEmpty())
@@ -171,6 +187,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
     private void checkEmailVerification()
     {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -178,8 +195,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (emailFlag)
         {
-            finish();
-            SendUserToMainActivity();
+            sendToUserHome();
         }
         else
         {
@@ -268,5 +284,36 @@ public class LoginActivity extends AppCompatActivity {
         Intent it = new Intent(LoginActivity.this, ForgotPassword.class);
         startActivity(it);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    private void sendToUserHome()
+    {
+        currentUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Participants").child(currentUserID);
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                String type = Objects.requireNonNull(dataSnapshot.child("type").getValue()).toString();
+
+                if (type.equals("admin"))
+                {
+                    loadingBar.dismiss();
+                    startActivity(new Intent(LoginActivity.this,AdminHome.class));
+                    finish();
+                }
+                else
+                {
+                    loadingBar.dismiss();
+                    SendUserToMainActivity();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
