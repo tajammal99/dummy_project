@@ -212,7 +212,7 @@ public class HomeP extends AppCompatActivity
                     Map<String, Object> userInfo = new HashMap<>();
                     userInfo.put("fullName", fullName);
                     userInfo.put("mobile", mobile);
-                    userInfo.put("depatment", depart);
+                    userInfo.put("department", depart);
                     databaseReference.child("pInfo").updateChildren(userInfo);
 
                     Toast.makeText(HomeP.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
